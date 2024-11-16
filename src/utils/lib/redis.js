@@ -1,8 +1,14 @@
 const ioredis = require("ioredis");
 
+const redisConfig = require("../../config");
+
 class Redis {
-  constructor(options) {
-    this.cache = new ioredis(options);
+  constructor() {
+    this.cache = new ioredis({
+      host: redisConfig.host,
+      port: redisConfig.port,
+      password: redisConfig.password
+    });
   }
 
   async get(key) {

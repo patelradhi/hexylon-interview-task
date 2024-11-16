@@ -1,11 +1,12 @@
+require("dotenv").config();
+
 module.exports = {
   service: {
-    port: 4000,
-    host: "127.0.0.1",
-    endpoint: "sample"
+    port: process.env.PORT,
+    host: process.env.HOST
   },
   cookie: {
-    secret: "COOKIE_KEY"
+    secret: process.env.COOKIE_SECRET
   },
   cors: {
     origin: "localhost:5000",
@@ -14,12 +15,16 @@ module.exports = {
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE"
   },
   redis: {
-    password: "REDIS_PASSWORD"
+    password: process.env.REDIS_PASSWORD,
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT
   },
-  cockroach: {
-    user: "root",
+  postgres: {
+    user: process.env.POSTGRES_USER,
+    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DATABASE,
     maxPoolSize: 10,
-    host: "127.0.0.1",
-    port: 26257
+    host: process.env.POSTGRES_HOST,
+    port: process.env.POSTGRES_PORT
   }
 };

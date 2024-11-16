@@ -7,5 +7,5 @@ RUN npm i
 
 COPY src src
 
-EXPOSE 5000
-CMD npm run dev
+EXPOSE 4000
+CMD npm run prod

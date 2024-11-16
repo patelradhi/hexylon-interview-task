@@ -1,35 +1,46 @@
-class UnknownError extends Error {
-  constructor(message) {
+class BaseError extends Error {
+  constructor(message, status) {
     super(message);
-    this.status = 500;
+    this.status = status;
+    this.name = this.constructor.name;
+    Error.captureStackTrace(this, this.constructor);
   }
 }
 
-class NotFoundError extends Error {
-  constructor(message) {
-    super(message);
-    this.status = 404;
+class UnknownError extends BaseError {
+  constructor(message = "An unexpected error occurred") {
+    super(message, 500);
   }
 }
 
-class UnAuthenticatedError extends Error {
-  constructor(message) {
-    super(message);
-    this.status = 401;
+class NotFoundError extends BaseError {
+  constructor(message = "Resource not found") {
+    super(message, 404);
   }
 }
 
-class UnAuthorizedError extends Error {
-  constructor(message) {
-    super(message);
-    this.status = 403;
+class UnAuthenticatedError extends BaseError {
+  constructor(message = "Authentication required") {
+    super(message, 401);
   }
 }
 
-class ResourceConflict extends Error {
-  constructor(message) {
-    super(message);
-    this.status = 409;
+class UnAuthorizedError extends BaseError {
+  constructor(message = "Not authorized") {
+    super(message, 403);
+  }
+}
+
+class ResourceConflict extends BaseError {
+  constructor(message = "Resource already exists") {
+    super(message, 409);
+  }
+}
+
+class ValidationError extends BaseError {
+  constructor(message = "Validation failed", details = {}) {
+    super(message, 400);
+    this.details = details;
   }
 }
 
@@ -38,5 +49,6 @@ module.exports = {
   NotFoundError,
   UnAuthenticatedError,
   UnAuthorizedError,
-  ResourceConflict
+  ResourceConflict,
+  ValidationError
 };

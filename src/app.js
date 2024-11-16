@@ -1,5 +1,6 @@
 const config = require("./config");
 const app = require("express")();
+const express = require("express");
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
@@ -8,10 +9,12 @@ const pino = require("pino");
 const loggerMiddleware = require("pino-http");
 const router = require("./routes");
 const logger = pino.pino();
+const errorHandler = require("./middleware/error.middleware");
 
 app.use(helmet());
 app.use(cookieParser(config.cookie.secret));
 app.use(cors(config.cors));
+app.use(express.json());
 app.use(
   loggerMiddleware({
     logger: pino(),
@@ -25,7 +28,9 @@ app.use(
     useLevel: "info"
   })
 );
-app.use(`/${config.service.endpoint}`, router);
+app.use("/", router);
+
+app.use(errorHandler);
 
 module.exports = {
   logger,
