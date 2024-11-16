@@ -38,5 +38,5 @@ module.exports = {
   NotFoundError,
   UnAuthenticatedError,
   UnAuthorizedError,
-  ResourceConflict,
-}
+  ResourceConflict
+};

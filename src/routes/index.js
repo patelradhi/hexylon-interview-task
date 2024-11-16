@@ -1,8 +1,8 @@
-const { Router } = require('express');
+const { Router } = require("express");
 
-const createRoutes = require('./create-routes');
+const createRoutes = require("./create-routes");
 const router = Router({
-  mergeParams: true,
+  mergeParams: true
 });
 
 createRoutes({ router });

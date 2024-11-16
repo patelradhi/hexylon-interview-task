@@ -1,16 +1,16 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient } = require("mongodb");
 
 class MongoDb {
-    constructor(url) {
-        this.client = new MongoClient(url);
-    }
+  constructor(url) {
+    this.client = new MongoClient(url);
+  }
 
-    async init() {
-        await this.client.connect();
-    }
-    async database(dbName) {
-        return this.client.db(dbName);
-    }
+  async init() {
+    await this.client.connect();
+  }
+  async database(dbName) {
+    return this.client.db(dbName);
+  }
 }
 
-module.exports = MongoDb
+module.exports = MongoDb;

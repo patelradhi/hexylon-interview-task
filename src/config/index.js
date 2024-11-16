@@ -1,2 +1,2 @@
-const config = require(`./${process.env.ENVIRONMENT ?? 'development'}.js`);
+const config = require(`./${process.env.ENVIRONMENT ?? "development"}.js`);
 module.exports = config || {};

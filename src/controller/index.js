@@ -1,10 +1,10 @@
-const createSuccessResponse = require('../utils/create-success-response');
+const createSuccessResponse = require("../utils/create-success-response");
 
-const makeHealthCheck = require('./makeHealthCheck');
+const makeHealthCheck = require("./makeHealthCheck");
 const healthCheck = makeHealthCheck({
-  createSuccessResponse: createSuccessResponse,
+  createSuccessResponse: createSuccessResponse
 });
 
 module.exports = {
-  healthCheck,
-}
+  healthCheck
+};
