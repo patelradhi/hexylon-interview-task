@@ -5,9 +5,13 @@ const redisConfig = require("../../config");
 class Redis {
   constructor() {
     this.cache = new ioredis({
-      host: redisConfig.host,
-      port: redisConfig.port,
-      password: redisConfig.password
+      host: process.env.REDIS_HOST || redisConfig.host,
+      port: process.env.REDIS_PORT || redisConfig.port,
+      password: process.env.REDIS_PASSWORD || redisConfig.password
+    });
+
+    this.cache.on("error", (err) => {
+      console.error("Redis connection error:", err);
     });
   }
 

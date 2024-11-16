@@ -3,6 +3,7 @@ version: "3.8"
 services:
   app:
     build: .
+    restart: always
     ports:
       - "4000:4000"
     environment:
@@ -24,6 +25,7 @@ services:
 
   postgres:
     image: postgres:14-alpine
+    restart: always
     environment:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=secret
@@ -35,8 +37,9 @@ services:
 
   redis:
     image: redis:alpine
+    restart: always
     environment:
-      - REDIS_PASSWORD=secret
+      - REDIS_PASSWORD=
     ports:
       - "6379:6379"
     volumes:
