@@ -7,7 +7,7 @@ services:
     ports:
       - "4000:4000"
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
       - PORT=4000
       - HOST=0.0.0.0
       - COOKIE_SECRET=secret
